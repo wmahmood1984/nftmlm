@@ -1,6 +1,6 @@
 import Web3 from "web3"
 
-export const web3 = new Web3(new Web3.providers.HttpProvider("https://bsc-testnet-rpc.publicnode.com"))
+export const web3 = new Web3(new Web3.providers.HttpProvider("https://opbnb-testnet-rpc.publicnode.com"))
 
 export const mlmabi = [
 	{
@@ -1233,7 +1233,7 @@ export const mlmabi = [
 	}
 ]
 
-export const mlmcontractaddress = "0x24D8cd54aCF25A22213041d13d6b3269b592C01a"
+export const mlmcontractaddress = "0x9f375b3C5DCec87Ed492e1109BA356738Cd59b75"
 
 export const erc20abi = [
 	{
@@ -1421,7 +1421,7 @@ export const erc20abi = [
 	}
 ]
 
-export const erc20Add = "0x6A93BE09018d2865db4f343EA7923e9dFbd3f07b"
+export const erc20Add = "0x2907DA57598e5dd349d768FbC0e6BC3D2CF66cB9"
 
  export const mlmContract = {
 	address: mlmcontractaddress,
