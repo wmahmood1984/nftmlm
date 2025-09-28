@@ -4,9 +4,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { executeContract } from "../utils/contractExecutor";
 import { useConfig } from "wagmi";
 import { readName } from "../slices/contractSlice";
+import { useAppKitAccount } from "@reown/appkit/react";
+import { mlmcontractaddress, usdtContract } from "../config";
 
 export default function MintModal({ isOpen, onClose }) {
-      const { nextTokenId, status, error } = useSelector((state) => state.contract);
+      const { nftused,allowance, status, error } = useSelector((state) => state.contract);
+          const { address, isConnected, caipAddress, status: accountStatus } = useAppKitAccount();
     const [name, setName] = useState("");
   const [file, setFile] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -20,19 +23,23 @@ export default function MintModal({ isOpen, onClose }) {
   });
 
 
-    const handleUpdate = async (uri) => {
+    const handleUpdate = async (uri,add) => {
           await executeContract({
               config,
               functionName: "mint",
-              args: [uri],
+              args: [uri,add],
               onSuccess: (txHash, receipt) => {
                   console.log("🎉 Tx Hash:", txHash);
                   console.log("🚀 Tx Receipt:", receipt);
                   dispatch(readName({ address: receipt.from }));
+                     setLoading(false);
+    onClose();
               },
               onError: (err) => {
                   console.error("🔥 Error in register:", err);
                   alert("Transaction failed");
+                  setLoading(false)
+                  onClose()
               },
           });
       };
@@ -108,11 +115,10 @@ const handleMint = async () => {
       throw new Error("Metadata URI is missing, aborting mint.");
     }
 
-    handleUpdate(metadataURI); // call your mint function
+    handleUpdate(metadataURI,address); // call your mint function
     console.log("🚀 Mint request sent with URI:", metadataURI);
 
-    setLoading(false);
-    onClose();
+ 
   } catch (err) {
     console.error("❌ Error uploading to Pinata:", err);
     alert(`Mint failed: ${err.message}`);
@@ -121,7 +127,25 @@ const handleMint = async () => {
 };
 
 
-console.log("first",import.meta.env.VITE_PINATA_JWT,)
+    const handleRegister = async () => {
+        if (allowance >= (nftused.price+nftused.premium)) {
+            handleMint()
+        } else {
+            await executeContract({
+                config,
+                functionName: "approve",
+                args: [mlmcontractaddress, (nftused.price+nftused.premium)],
+                onSuccess: () => handleMint(),
+                onError: (err) => alert("Transaction failed"),
+                contract: usdtContract
+            });
+        }
+
+
+    };
+
+
+// console.log("first",import.meta.env.VITE_PINATA_JWT,)
 
   if (!isOpen) return null;
 
@@ -146,7 +170,7 @@ console.log("first",import.meta.env.VITE_PINATA_JWT,)
         />
 
         <button
-          onClick={handleMint}
+          onClick={handleRegister}
           disabled={loading}
           className="bg-blue-600 text-white w-full py-2 rounded"
         >

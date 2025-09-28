@@ -52,14 +52,14 @@ export const Image = ({ nft, index }) => {
 
 
     const handleBuy = async (id) => {
-        if (allowance >= nfts[id].price) {
+        if (allowance >= (nfts[id].price+nfts[id].premium)) {
 
             handleBuy2(id, address)
         } else {
             await executeContract({
                 config,
                 functionName: "approve",
-                args: [mlmcontractaddress, nfts[id].price],
+                args: [mlmcontractaddress, (nfts[id].price+nfts[id].premium)],
                 onSuccess: () => handleBuy2(id, address),
                 onError: (err) => alert("Transaction failed"),
                 contract: usdtContract
@@ -69,7 +69,7 @@ export const Image = ({ nft, index }) => {
 
     };
 
-            //   console.log("my nft",index,nft);
+              console.log("my nft",index,nft);
 
     return (image && name &&
 
@@ -98,7 +98,7 @@ export const Image = ({ nft, index }) => {
                 {/* Price + Buy Button */}
                 <div className="flex items-center justify-between">
                     <p>
-                        <span className="font-semibold">Price:</span> {formatEther(nft.price)} $
+                        <span className="font-semibold">Price:</span> {Number(formatEther(nft.price))+Number(formatEther(nft.premium)) } $
                     </p>
                     {address != nft._owner && <button
                         onClick={() => handleBuy(nft.id)}

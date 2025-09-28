@@ -31,6 +31,7 @@ export const readName = createAsyncThunk(
     const NFTQueBalance = await contract.methods.NFTQueBalance().call()
     const NFTMayBeCreated = await contract.methods.NFTMayBeCreated().call()
     const nextTokenId = await contract.methods._nextTokenId().call()
+    const nftused = await contract.methods.nftused().call()
 
     let Package = null;
     let uplines = [];
@@ -70,7 +71,8 @@ export const readName = createAsyncThunk(
       NFTQueBalance,
       myNFTs,
       NFTMayBeCreated,
-      nextTokenId
+      nextTokenId,
+      nftused,
     };
   }
 );
@@ -96,6 +98,7 @@ const contractSlice = createSlice({
     myNFTs:[],
     NFTMayBeCreated:false,
     nextTokenId:0,
+    nftused:null,
     status: "idle",
     error: null,
   },
@@ -128,8 +131,9 @@ const contractSlice = createSlice({
         state.NFTque = action.payload.NFTque;
         state.NFTQueBalance = action.payload.NFTQueBalance;
         state.myNFTs = action.payload.myNFTs;
-          state.NFTMayBeCreated = action.payload.NFTMayBeCreated;
-           state.nextTokenId = action.payload.nextTokenId;
+        state.NFTMayBeCreated = action.payload.NFTMayBeCreated;
+        state.nextTokenId = action.payload.nextTokenId;
+        state.nftused = action.payload.nftused;
       })
       .addCase(readName.rejected, (state, action) => {
         state.status = "failed";
