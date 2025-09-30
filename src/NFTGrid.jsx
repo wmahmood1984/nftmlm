@@ -92,13 +92,13 @@ export const Image = ({ nft, index }) => {
                     <span className="font-semibold">Name:</span> {name}
                 </p>
                 <p className="truncate">
-                    <span className="font-semibold">Owner:</span> {nft._owner}
+                    <span className="font-semibold">Owner:</span> {`${nft._owner.slice(0, 4)}...${nft._owner.slice(-4)}`}
                 </p>
 
                 {/* Price + Buy Button */}
                 <div className="flex items-center justify-between">
                     <p>
-                        <span className="font-semibold">Price:</span> {Number(formatEther(nft.price))+Number(formatEther(nft.premium)) } $
+                        <span className="font-semibold">Price:</span> {Number(formatEther(nft.price)) } $
                     </p>
                     {address != nft._owner && <button
                         onClick={() => handleBuy(nft.id)}
