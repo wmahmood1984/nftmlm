@@ -1563,7 +1563,7 @@ export const mlmabi = [
 	}
 ]
 
-export const mlmcontractaddress = "0x242f787FB66F90374DeAa87332C8deb4ab9adB26"
+export const mlmcontractaddress = "0x5648158bD29eEfF8cc95088E25CfA50AFeB9974B"
 
 export const mlmcontractaddressImplementation = "0xB9605fAe41F3D602e576a5Fa30dfCa810A35B76E"
 

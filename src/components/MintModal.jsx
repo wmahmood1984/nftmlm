@@ -128,13 +128,14 @@ const handleMint = async () => {
 
 
     const handleRegister = async () => {
+      console.log("handle",nftused)
         if (allowance >= (nftused.price+nftused.premium)) {
             handleMint()
         } else {
             await executeContract({
                 config,
                 functionName: "approve",
-                args: [mlmcontractaddress, (nftused.price+nftused.premium)],
+                args: [mlmcontractaddress, (nftused[0].price+nftused[0].premium)],
                 onSuccess: () => handleMint(),
                 onError: (err) => alert("Transaction failed"),
                 contract: usdtContract
