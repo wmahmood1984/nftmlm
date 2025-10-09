@@ -40,7 +40,7 @@ export const readName = createAsyncThunk(
       const name = await safeCall("name", () => contract.methods.name().call());
       const nfts = await safeCall("getNFTs", () => contract.methods.getNFTs().call());
       const packages = await safeCall("getPackages", () => contract.methods.getPackages().call());
-      const admin = await safeCall("admin", () => contract.methods.admin().call());
+      const admin = await safeCall("admin", () => contract.methods.owner().call());
       const NFTque = await safeCall("getNFTque", () => contract.methods.getNFTque().call());
       const registered = await safeCall("userRegistered", () => contract.methods.userRegistered(a.address).call());
       const NFTQueBalance = await safeCall("NFTQueBalance", () => contract.methods.NFTQueBalance().call());

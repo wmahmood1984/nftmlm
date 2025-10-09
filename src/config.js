@@ -578,6 +578,13 @@ export const mlmabi = [
 	},
 	{
 		"inputs": [],
+		"name": "withdrawUSDT",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
 		"name": "_nextTokenId",
 		"outputs": [
 			{
@@ -1553,66 +1560,12 @@ export const mlmabi = [
 		],
 		"stateMutability": "view",
 		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "",
-				"type": "address"
-			},
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"name": "userTransactions",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "time",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "hash",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "amount",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "_type",
-				"type": "uint256"
-			},
-			{
-				"internalType": "address",
-				"name": "add",
-				"type": "address"
-			},
-			{
-				"internalType": "uint256",
-				"name": "tokenId",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "premium",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
 	}
 ]
 
-export const mlmcontractaddress = "0x80fEA99ea69490eA9972340e851730A24d46C4EF"
+export const mlmcontractaddress = "0x242f787FB66F90374DeAa87332C8deb4ab9adB26"
 
-export const mlmcontractaddressImplementation = "0x367d8ff9579cc58865Ac0c6778cDC1d24Ed57630"
+export const mlmcontractaddressImplementation = "0xB9605fAe41F3D602e576a5Fa30dfCa810A35B76E"
 
 export const erc20abi = [
 	{

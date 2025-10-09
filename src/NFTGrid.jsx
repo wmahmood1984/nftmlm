@@ -37,6 +37,7 @@ export const Image = ({ nft, index }) => {
 
   
     const handleBuy2 = async (id, address2) => {
+        console.log("handle buy",id)
         await executeContract({
             config,
             functionName: "buyNFT",
