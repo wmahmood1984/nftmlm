@@ -656,15 +656,15 @@ export const mlmabi = [
 		"inputs": [
 			{
 				"internalType": "address",
-				"name": "",
+				"name": "_root",
 				"type": "address"
 			}
 		],
-		"name": "childParent",
+		"name": "findAvailableSlot",
 		"outputs": [
 			{
 				"internalType": "address",
-				"name": "",
+				"name": "placement",
 				"type": "address"
 			}
 		],
@@ -720,21 +720,9 @@ export const mlmabi = [
 		"name": "getDownlines",
 		"outputs": [
 			{
-				"components": [
-					{
-						"internalType": "address",
-						"name": "add",
-						"type": "address"
-					},
-					{
-						"internalType": "uint256",
-						"name": "level",
-						"type": "uint256"
-					}
-				],
-				"internalType": "struct MyNFT.Referred[]",
+				"internalType": "address[]",
 				"name": "",
-				"type": "tuple[]"
+				"type": "address[]"
 			}
 		],
 		"stateMutability": "view",
@@ -962,45 +950,28 @@ export const mlmabi = [
 		"inputs": [
 			{
 				"internalType": "address",
-				"name": "user",
+				"name": "_user",
 				"type": "address"
 			}
 		],
-		"name": "getUplines2",
+		"name": "getUser",
 		"outputs": [
 			{
-				"internalType": "address[]",
+				"components": [
+					{
+						"internalType": "address",
+						"name": "referrer",
+						"type": "address"
+					},
+					{
+						"internalType": "address[]",
+						"name": "children",
+						"type": "address[]"
+					}
+				],
+				"internalType": "struct MyNFT.User",
 				"name": "",
-				"type": "address[]"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "",
-				"type": "address"
-			},
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"name": "indirectReferralsOf",
-		"outputs": [
-			{
-				"internalType": "address",
-				"name": "add",
-				"type": "address"
-			},
-			{
-				"internalType": "uint256",
-				"name": "level",
-				"type": "uint256"
+				"type": "tuple"
 			}
 		],
 		"stateMutability": "view",
@@ -1340,30 +1311,6 @@ export const mlmabi = [
 				"internalType": "address",
 				"name": "",
 				"type": "address"
-			},
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"name": "referralsOf",
-		"outputs": [
-			{
-				"internalType": "address",
-				"name": "",
-				"type": "address"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "",
-				"type": "address"
 			}
 		],
 		"name": "referredBy",
@@ -1550,6 +1497,25 @@ export const mlmabi = [
 				"type": "address"
 			}
 		],
+		"name": "users",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "referrer",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
 		"name": "userTradingTime",
 		"outputs": [
 			{
@@ -1563,7 +1529,7 @@ export const mlmabi = [
 	}
 ]
 
-export const mlmcontractaddress = "0x4f63eC3e1a27B44bb220c994ddFd811581aaCB64"
+export const mlmcontractaddress = "0x21939BED0614D2494ED91EB2c0cdA2436C87a5A1"
 
 export const mlmcontractaddressImplementation = "0xB9605fAe41F3D602e576a5Fa30dfCa810A35B76E"
 

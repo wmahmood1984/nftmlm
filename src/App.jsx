@@ -9,69 +9,72 @@ import ConnectButton from "./ConnectButton";
 import { executeContract } from "./utils/contractExecutor";
 import { useConfig } from "wagmi";
 import MintModal from "./components/MintModal";
+import AddressHierarchy from "./components/Tree";
 
 function App() {
   const dispatch = useDispatch();
-  const { nfts,name,NFTMayBeCreated, status, error } = useSelector((state) => state.contract);
+  const { nfts, name, NFTMayBeCreated, status, error } = useSelector((state) => state.contract);
   const { address, isConnected, caipAddress, status: accountStatus } = useAppKitAccount();
- const config = useConfig()
- const [isOpen,setIsOpen] = useState(false)
+  const config = useConfig()
+  const [isOpen, setIsOpen] = useState(false)
 
 
   useEffect(() => {
     // init contract first, then read
     dispatch(init()).then(() => {
-      if(address){
-      dispatch(readName({address}));
+      if (address) {
+        dispatch(readName({ address }));
       }
 
     });
-  }, [dispatch,address]);
+  }, [dispatch, address]);
 
- const handleMint = async () => {
-       setIsOpen(true)
-    }
+  const handleMint = async () => {
+    setIsOpen(true)
+  }
 
   return (
-   <div className="p-8 max-w-7xl mx-auto">
-  {/* Heading */}
-  <h1 className="text-3xl font-bold mb-6 text-center text-indigo-700 border-b-4 border-indigo-300 pb-2">
-    Contract Interaction
-  </h1>
-  <ConnectButton/>
+    <div className="p-8 max-w-7xl mx-auto">
+      {/* Heading */}
+      <h1 className="text-3xl font-bold mb-6 text-center text-indigo-700 border-b-4 border-indigo-300 pb-2">
+        Contract Interaction
+      </h1>
+      <ConnectButton />
 
-  {/* Contract info */}
-  <div className="bg-gray-50 rounded-xl shadow-md p-6 mb-8">
-    {status === "loading" && <p className="text-gray-600">Loading...</p>}
-    {error && <p className="text-red-600 font-semibold">{error}</p>}
-    {name && (
-      <p className="text-lg font-medium text-gray-800">
-        <span className="font-bold text-indigo-600">Contract Name:</span> {name}
-      </p>
-    )}
-  </div>
+      {/* Contract info */}
+      <div className="bg-gray-50 rounded-xl shadow-md p-6 mb-8">
+        {status === "loading" && <p className="text-gray-600">Loading...</p>}
+        {error && <p className="text-red-600 font-semibold">{error}</p>}
+        {name && (
+          <p className="text-lg font-medium text-gray-800">
+            <span className="font-bold text-indigo-600">Contract Name:</span> {name}
+          </p>
+        )}
+      </div>
 
-  {NFTMayBeCreated && (
-      <p className="text-lg font-medium text-gray-800">
-        <button
-                                              
-                                                className={`w-full py-3 rounded-lg font-semibold transition-colors bg-indigo-700 text-white cursor-pointer"`}
-                                                onClick={handleMint}
-                                            >
-                                                Create NFT
-                                            </button>
-      </p>
-    )}
+      {/* <AddressHierarchy/> */}
 
-  <ProfileSection />
+      {NFTMayBeCreated && (
+        <p className="text-lg font-medium text-gray-800">
+          <button
 
-  {/* NFT section */}
-  <div>
-    <h2 className="text-2xl font-semibold mb-4 text-gray-700">NFT Collection</h2>
-    <NFTGrid nfts={nfts} />
-  </div>
-  <MintModal isOpen={isOpen} onClose={()=>setIsOpen(false)}></MintModal>
-</div>
+            className={`w-full py-3 rounded-lg font-semibold transition-colors bg-indigo-700 text-white cursor-pointer"`}
+            onClick={handleMint}
+          >
+            Create NFT
+          </button>
+        </p>
+      )}
+
+      <ProfileSection />
+
+      {/* NFT section */}
+      <div>
+        <h2 className="text-2xl font-semibold mb-4 text-gray-700">NFT Collection</h2>
+        <NFTGrid nfts={nfts} />
+      </div>
+      <MintModal isOpen={isOpen} onClose={() => setIsOpen(false)}></MintModal>
+    </div>
 
   );
 }

@@ -56,6 +56,7 @@ export const readName = createAsyncThunk(
       let directReferrals = [];
       let limitUtilized = 0;
       let myNFTs = [];
+      
 
       if (a.address && registered) {
         Package = await safeCall("userPackage", () => contract.methods.userPackage(a.address).call());
@@ -65,7 +66,8 @@ export const readName = createAsyncThunk(
         directReferrals = await safeCall("getDirectReferrals", () => contract.methods.getDirectReferrals(a.address).call());
         limitUtilized = await safeCall("userLimitUtilized", () => contract.methods.userLimitUtilized(a.address).call());
         myNFTs = await safeCall("getNFTs(address)", () => contract.methods.getNFTs(a.address).call());
-             myNFTs = await safeCall("getNFTs(address)", () => contract.methods.getNFTs(a.address).call());
+        myNFTs = await safeCall("getNFTs(address)", () => contract.methods.getNFTs(a.address).call());
+      
       }
 
       console.log("✅ [readName] All calls succeeded");
