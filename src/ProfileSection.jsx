@@ -104,7 +104,7 @@ const ProfileSection = () => {
         : formatEther(NFTQueBalance);
 
   
-
+              console.log("my nft",downlines);
     return (status === "loading" ? <p className="text-gray-600">Loading...</p> :
         error ? <p className="text-red-600 font-semibold">{error}</p> :
             registered ?

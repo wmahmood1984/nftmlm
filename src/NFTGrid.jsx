@@ -70,7 +70,7 @@ export const Image = ({ nft, index }) => {
 
     };
 
-              console.log("my nft",index,nft);
+
 
     return (image && name &&
 

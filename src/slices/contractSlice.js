@@ -47,6 +47,7 @@ export const readName = createAsyncThunk(
       const NFTMayBeCreated = await safeCall("NFTMayBeCreated", () => contract.methods.NFTMayBeCreated().call());
       const nextTokenId = await safeCall("_nextTokenId", () => contract.methods._nextTokenId().call());
       const nftused = await safeCall("nftused(0)", () => contract.methods.getNFTused().call());
+   
 
       let Package = null;
       let uplines = [];
@@ -64,6 +65,7 @@ export const readName = createAsyncThunk(
         directReferrals = await safeCall("getDirectReferrals", () => contract.methods.getDirectReferrals(a.address).call());
         limitUtilized = await safeCall("userLimitUtilized", () => contract.methods.userLimitUtilized(a.address).call());
         myNFTs = await safeCall("getNFTs(address)", () => contract.methods.getNFTs(a.address).call());
+             myNFTs = await safeCall("getNFTs(address)", () => contract.methods.getNFTs(a.address).call());
       }
 
       console.log("✅ [readName] All calls succeeded");
