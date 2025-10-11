@@ -324,6 +324,43 @@ export const mlmabi = [
 		"inputs": [
 			{
 				"indexed": false,
+				"internalType": "address",
+				"name": "add",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "id",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "amount",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "premium",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "time",
+				"type": "uint256"
+			}
+		],
+		"name": "Buy",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
 				"internalType": "uint64",
 				"name": "version",
 				"type": "uint64"
@@ -1308,25 +1345,6 @@ export const mlmabi = [
 	{
 		"inputs": [
 			{
-				"internalType": "address",
-				"name": "",
-				"type": "address"
-			}
-		],
-		"name": "referredBy",
-		"outputs": [
-			{
-				"internalType": "address",
-				"name": "",
-				"type": "address"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
 				"internalType": "bytes4",
 				"name": "interfaceId",
 				"type": "bytes4"
@@ -1529,7 +1547,7 @@ export const mlmabi = [
 	}
 ]
 
-export const mlmcontractaddress = "0x21939BED0614D2494ED91EB2c0cdA2436C87a5A1"
+export const mlmcontractaddress = "0xd1D26F46070c027CDAFab3bfb8b04Ef61D356f1a"
 
 export const mlmcontractaddressImplementation = "0xB9605fAe41F3D602e576a5Fa30dfCa810A35B76E"
 

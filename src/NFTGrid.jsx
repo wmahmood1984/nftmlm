@@ -99,7 +99,7 @@ export const Image = ({ nft, index }) => {
                 {/* Price + Buy Button */}
                 <div className="flex items-center justify-between">
                     <p>
-                        <span className="font-semibold">Price:</span> {Number(formatEther(nft.price)) } $
+                        <span className="font-semibold">Price:</span> {Number(formatEther(nft.price)*1.07).toFixed(2) } $
                     </p>
                     {address != nft._owner && <button
                         onClick={() => handleBuy(nft.id)}
@@ -116,6 +116,8 @@ export const Image = ({ nft, index }) => {
 }
 
 const NFTGrid = ({ nfts }) => {
+
+console.log("nft",nfts)
     return (
         <div className="p-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             {nfts.map((nft, index) => {
