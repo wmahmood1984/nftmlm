@@ -104,7 +104,7 @@ const ProfileSection = () => {
         : formatEther(NFTQueBalance);
 
   
-              console.log("my nft",downlines);
+//              console.log("my nft",packages);
     return (status === "loading" ? <p className="text-gray-600">Loading...</p> :
         error ? <p className="text-red-600 font-semibold">{error}</p> :
             registered ?
@@ -175,7 +175,7 @@ const ProfileSection = () => {
                             {(() => {
 
                                 const nextPackage = packages[Number(Package.id) + 1]; // next package
-                                console.log("next", packages, Number(Package.id) + 1)
+                                console.log("next",nextPackage.team, packages, Number(Package.id) + 1)
                                 const canUpgrade = downlines.length >= nextPackage.team;
 
                                 return (Number(Package.id)<(packages.length-2)&& 

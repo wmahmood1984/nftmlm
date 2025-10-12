@@ -117,7 +117,7 @@ export const Image = ({ nft, index }) => {
 
 const NFTGrid = ({ nfts }) => {
 
-console.log("nft",nfts)
+//console.log("nft",nfts)
     return (
         <div className="p-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             {nfts.map((nft, index) => {
