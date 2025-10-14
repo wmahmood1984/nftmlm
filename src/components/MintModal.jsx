@@ -6,6 +6,7 @@ import { useConfig } from "wagmi";
 import { readName } from "../slices/contractSlice";
 import { useAppKitAccount } from "@reown/appkit/react";
 import { mlmcontractaddress, usdtContract } from "../config";
+import { formatEther, parseEther } from "ethers";
 
 export default function MintModal({ isOpen, onClose }) {
       const { nftused,allowance, status, error } = useSelector((state) => state.contract);
@@ -132,10 +133,12 @@ const handleMint = async () => {
         if (allowance >= (nftused.price+nftused.premium)) {
             handleMint()
         } else {
+                const value = Number(formatEther(nftused[0].premium)) + Number(formatEther(nftused[0].price)*0.07)
+                      console.log("value", value.toString())
             await executeContract({
                 config,
                 functionName: "approve",
-                args: [mlmcontractaddress, (nftused[0].price+nftused[0].premium)],
+                args: [mlmcontractaddress, parseEther(value.toString())],
                 onSuccess: () => handleMint(),
                 onError: (err) => alert("Transaction failed"),
                 contract: usdtContract
