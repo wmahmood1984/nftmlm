@@ -1,5 +1,5 @@
 import axios from "axios";
-import { formatEther } from "ethers";
+import { formatEther, parseEther } from "ethers";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { mlmcontractaddress, usdtContract } from "./config";
@@ -57,10 +57,13 @@ export const Image = ({ nft, index }) => {
 
             handleBuy2(id, address)
         } else {
+
+            const value = Number(formatEther(nfts[id-1].premium)) + Number(formatEther(nfts[id-1].price)*0.07)
+            console.log("value", value.toString())
             await executeContract({
                 config,
                 functionName: "approve",
-                args: [mlmcontractaddress, (nfts[id].price+nfts[id].premium)],
+                args: [mlmcontractaddress, parseEther(value.toString())],
                 onSuccess: () => handleBuy2(id, address),
                 onError: (err) => alert("Transaction failed"),
                 contract: usdtContract

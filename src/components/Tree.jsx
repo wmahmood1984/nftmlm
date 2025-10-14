@@ -78,7 +78,7 @@ export default function AddressHierarchy() {
         // Otherwise fetch child subtrees
         const childNodes = [];
         for (const child of validChildren) {
-          await delay(500);
+          await delay(200);
           const subtree = await fetchUserTree(child, depth + 1);
           if (subtree) childNodes.push(subtree);
         }

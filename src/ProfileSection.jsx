@@ -175,7 +175,7 @@ const ProfileSection = () => {
                             {(() => {
 
                                 const nextPackage = packages[Number(Package.id) + 1]; // next package
-                                console.log("next",nextPackage.team, packages, Number(Package.id) + 1)
+                                console.log("next",Number(Package.id),nextPackage.team, packages, Number(Package.id) + 1)
                                 const canUpgrade = downlines.length >= nextPackage.team;
 
                                 return (Number(Package.id)<(packages.length-2)&& 
