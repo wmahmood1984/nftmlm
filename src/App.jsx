@@ -52,7 +52,7 @@ function App() {
         )}
       </div>
 
-      {/* <AddressHierarchy/> */}
+      <AddressHierarchy/>
 
       {NFTMayBeCreated && (
         <p className="text-lg font-medium text-gray-800">
