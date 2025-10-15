@@ -125,7 +125,7 @@ const ProfileSection = () => {
                             <p className="font-bold text-gray-800">{uplines.length}</p>
                         </div> */}
                         <div className="bg-gray-50 rounded-lg p-4 shadow">
-                            <p className="text-sm text-gray-500">Total Downline</p>
+                            <p className="text-sm text-gray-500">Team size</p>
                             <p className="font-bold text-gray-800">{downlines.length}</p>
                         </div>
                         <div className="bg-gray-50 rounded-lg p-4 shadow">
