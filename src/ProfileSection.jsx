@@ -143,7 +143,7 @@ const ProfileSection = () => {
                         <div className="bg-gray-50 rounded-lg p-4 shadow">
                             <p className="text-sm text-gray-500">My Earnings</p>
                             <p className="font-bold text-green-600">
-                                {ethers.formatEther("0")} ETH
+                                {ethers.formatEther("0")} $
                             </p>
                         </div>
                         <div className="bg-gray-50 rounded-lg p-4 shadow">
@@ -153,7 +153,7 @@ const ProfileSection = () => {
                         <div className="bg-gray-50 rounded-lg p-4 shadow">
                             <p className="text-sm text-gray-500">NFTque Earnings</p>
                             <p className="font-bold text-green-600">
-                                {NFTQuebalance1} ETH
+                                {NFTQuebalance1} $
                             </p>
                         </div>
                     </div>
