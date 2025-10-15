@@ -73,7 +73,7 @@ const handleMint = async () => {
       );
     }
 
-    const imageURI = `https://peach-key-sailfish-125.mypinata.cloud/ipfs/${imgResult.IpfsHash}`;
+    const imageURI = `https://harlequin-biological-bat-26.mypinata.cloud/ipfs/${imgResult.IpfsHash}`;
     console.log("✅ Image uploaded:", imageURI);
 
     // -----------------------
@@ -106,7 +106,7 @@ const handleMint = async () => {
       );
     }
 
-    const metadataURI = `https://peach-key-sailfish-125.mypinata.cloud/ipfs/${metaResult.IpfsHash}`;
+    const metadataURI = `https://harlequin-biological-bat-26.mypinata.cloud/ipfs/${metaResult.IpfsHash}`;
     console.log("✅ Metadata uploaded:", metadataURI);
 
     // -----------------------
