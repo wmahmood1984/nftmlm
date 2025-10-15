@@ -76,9 +76,9 @@ const ProfileSection = () => {
 
 
     const handleUpdate = async (pkg) => {
-        if (allowance >= pkg.price) {
-            handleUpdate2(pkg.id)
-        } else {
+        // if (allowance >= pkg.price) {
+        //     handleUpdate2(pkg.id)
+        // } else {
             await executeContract({
                 config,
                 functionName: "approve",
@@ -87,7 +87,7 @@ const ProfileSection = () => {
                 onError: (err) => alert("Transaction failed"),
                 contract: usdtContract
             });
-        }
+        //}
 
 
     };
