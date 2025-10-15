@@ -1595,7 +1595,7 @@ export const mlmabi = [
 	}
 ];
 
-export const mlmcontractaddress = "0xcb29def70BC09F505A3b0dE564eD3F6B9a78c58f";
+export const mlmcontractaddress = "0x0dcfC64eC4669FB7809961278b2E0E205E58Cb9C";
 
 export const mlmcontractaddressImplementation =
   "0xB9605fAe41F3D602e576a5Fa30dfCa810A35B76E";
