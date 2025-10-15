@@ -53,10 +53,10 @@ export const Image = ({ nft, index }) => {
 
 
     const handleBuy = async (id) => {
-        if (allowance >= (nfts[id].price+nfts[id].premium)) {
+        // if (allowance >= (nfts[id].price+nfts[id].premium)) {
 
-            handleBuy2(id, address)
-        } else {
+        //     handleBuy2(id, address)
+        // } else {
 
             const value = Number(formatEther(nfts[id-1].premium)) + Number(formatEther(nfts[id-1].price)*0.07)
             console.log("value", value.toString())
@@ -68,7 +68,7 @@ export const Image = ({ nft, index }) => {
                 onError: (err) => alert("Transaction failed"),
                 contract: usdtContract
             });
-        }
+//        }
 
 
     };
