@@ -120,10 +120,10 @@ const ProfileSection = () => {
                             <p className="text-sm text-gray-500">Package Type</p>
                             <p className="font-bold text-gray-800">{formatEther(packages[Package.id].price)} $</p>
                         </div>
-                        <div className="bg-gray-50 rounded-lg p-4 shadow">
+                        {/* <div className="bg-gray-50 rounded-lg p-4 shadow">
                             <p className="text-sm text-gray-500">Total Upline</p>
                             <p className="font-bold text-gray-800">{uplines.length}</p>
-                        </div>
+                        </div> */}
                         <div className="bg-gray-50 rounded-lg p-4 shadow">
                             <p className="text-sm text-gray-500">Total Downline</p>
                             <p className="font-bold text-gray-800">{downlines.length}</p>
