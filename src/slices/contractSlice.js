@@ -43,7 +43,7 @@ export const readName = createAsyncThunk(
       const admin = await safeCall("admin", () => contract.methods.owner().call());
       const NFTque = await safeCall("getNFTque", () => contract.methods.getNFTque().call());
       const registered = await safeCall("userRegistered", () => contract.methods.userRegistered(a.address).call());
-      const NFTQueBalance = await safeCall("NFTQueBalance", () => contract.methods.NFTQueBalance().call());
+      
       const NFTMayBeCreated = await safeCall("NFTMayBeCreated", () => contract.methods.NFTMayBeCreated().call());
       const nextTokenId = await safeCall("_nextTokenId", () => contract.methods._nextTokenId().call());
       const nftused = await safeCall("nftused(0)", () => contract.methods.getNFTused().call());
@@ -56,7 +56,7 @@ export const readName = createAsyncThunk(
       let directReferrals = [];
       let limitUtilized = 0;
       let myNFTs = [];
-
+      let NFTQueBalance=0
 
       if (a.address && registered) {
         Package = await safeCall("userPackage", () => contract.methods.userPackage(a.address).call());
@@ -66,7 +66,7 @@ export const readName = createAsyncThunk(
         directReferrals = await safeCall("getDirectReferrals", () => contract.methods.getDirectReferrals(a.address).call());
         limitUtilized = await safeCall("userLimitUtilized", () => contract.methods.userLimitUtilized(a.address).call());
         myNFTs = await safeCall("getNFTs(address)", () => contract.methods.getNFTs(a.address).call());
-     
+        NFTQueBalance = await safeCall("NFTQueBalance", () => contract.methods.NFTQueBalance(a.address).call());
       
       }
 
