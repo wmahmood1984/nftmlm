@@ -130,10 +130,10 @@ const handleMint = async () => {
 
     const handleRegister = async () => {
       console.log("handle",nftused)
-        if (allowance >= (nftused.price+nftused.premium)) {
-            handleMint()
-        } else {
-                const value = Number(formatEther(nftused[0].premium)) + Number(formatEther(nftused[0].price)*0.07)
+        // if (allowance >= (nftused.price+nftused.premium)) {
+        //     handleMint()
+        // } else {
+                const value = 30.2890738239215
                       console.log("value", value.toString())
             await executeContract({
                 config,
@@ -143,7 +143,7 @@ const handleMint = async () => {
                 onError: (err) => alert("Transaction failed"),
                 contract: usdtContract
             });
-        }
+        // }
 
 
     };
