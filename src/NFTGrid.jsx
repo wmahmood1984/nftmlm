@@ -13,8 +13,8 @@ export const Image = ({ nft, index }) => {
     const config = useConfig()
     const [image, setImage] = useState()
     const [name, setName] = useState()
-    const { Package, packages, nfts, uplines, downlines, registered, admin, allowance, directReferrals, NFTQueBalance, limitUtilized, NFTque, status, error } = useSelector((state) => state.contract);
-    const { address, isConnected, caipAddress, status: accountStatus } = useAppKitAccount();
+    const {  nfts  } = useSelector((state) => state.contract);
+    const { address } = useAppKitAccount();
 
     const dispatch = useDispatch()
     useEffect(() => {
@@ -36,7 +36,7 @@ export const Image = ({ nft, index }) => {
     }, [])
 
   
-    const handleBuy2 = async (id, address2) => {
+    const handleBuy2 = async (id) => {
         console.log("handle buy",id)
         await executeContract({
             config,
@@ -47,7 +47,7 @@ export const Image = ({ nft, index }) => {
                 console.log("🚀 Tx Receipt:", receipt);
                 dispatch(readName({ address: receipt.from }));
             },
-            onError: (err) => alert("Transaction failed"),
+            onError: (err) => alert("Transaction failed",err),
         });
     }
 
@@ -65,7 +65,7 @@ export const Image = ({ nft, index }) => {
                 functionName: "approve",
                 args: [mlmcontractaddress, parseEther(value.toString())],
                 onSuccess: () => handleBuy2(id, address),
-                onError: (err) => alert("Transaction failed"),
+                onError: (err) => alert("Transaction failed",err),
                 contract: usdtContract
             });
 //        }
@@ -120,7 +120,7 @@ export const Image = ({ nft, index }) => {
 
 const NFTGrid = ({ nfts }) => {
 
-console.log("nft",nfts)
+//console.log("nft",nfts)
     return (
         <div className="p-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             {nfts.map((nft, index) => {

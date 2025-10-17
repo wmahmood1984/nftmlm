@@ -4,18 +4,20 @@ import { init, readName } from "./slices/contractSlice";
 import NFTGrid from "./NFTGrid";
 import "./App.css"
 import ProfileSection from "./ProfileSection";
-import { useAppKit, useAppKitAccount, useDisconnect } from "@reown/appkit/react";
+import {  useAppKitAccount } from "@reown/appkit/react";
 import ConnectButton from "./ConnectButton";
-import { executeContract } from "./utils/contractExecutor";
-import { useConfig } from "wagmi";
+// import { useConfig } from "wagmi";
 import MintModal from "./components/MintModal";
 import AddressHierarchy from "./components/Tree";
+import OwnerSettlement from "./components/OwnerSettlement";
+import Tree2 from "./components/Tree3";
+
 
 function App() {
   const dispatch = useDispatch();
-  const { nfts, name, NFTMayBeCreated, status, error } = useSelector((state) => state.contract);
-  const { address, isConnected, caipAddress, status: accountStatus } = useAppKitAccount();
-  const config = useConfig()
+  const { nfts, name, NFTMayBeCreated,admin, status, error } = useSelector((state) => state.contract);
+  const { address } = useAppKitAccount();
+  // const config = useConfig()
   const [isOpen, setIsOpen] = useState(false)
 
 
@@ -33,15 +35,19 @@ function App() {
     setIsOpen(true)
   }
 
-  console.log("nft creat",NFTMayBeCreated)
-
   return (
     <div className="p-8 max-w-7xl mx-auto">
       {/* Heading */}
+
+
       <h1 className="text-3xl font-bold mb-6 text-center text-indigo-700 border-b-4 border-indigo-300 pb-2">
         Contract Interaction
       </h1>
       <ConnectButton />
+
+      {address && admin && address.toLowerCase() === admin.toLowerCase() && 
+      <OwnerSettlement/>
+      }
 
       {/* Contract info */}
       <div className="bg-gray-50 rounded-xl shadow-md p-6 mb-8">
@@ -54,7 +60,9 @@ function App() {
         )}
       </div>
 
-      <AddressHierarchy/>
+      <Tree2/>
+
+      {/* <AddressHierarchy/> */}
 
       {NFTMayBeCreated && (
         <p className="text-lg font-medium text-gray-800">

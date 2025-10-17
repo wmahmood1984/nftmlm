@@ -69,6 +69,8 @@ export const readName = createAsyncThunk(
         NFTQueBalance = await safeCall("NFTQueBalance", () => contract.methods.NFTQueBalance(a.address).call());
       
       }
+      
+  
 
       console.log("✅ [readName] All calls succeeded");
 

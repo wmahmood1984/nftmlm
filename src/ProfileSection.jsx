@@ -1,6 +1,6 @@
 
 import { useAppKitAccount } from "@reown/appkit/react";
-import { ethers, formatEther, parseEther } from "ethers";
+import { ethers, formatEther } from "ethers";
 import { useDispatch, useSelector } from "react-redux";
 import { executeContract } from "./utils/contractExecutor";
 import { mlmcontractaddress, usdtContract } from "./config";
@@ -12,8 +12,8 @@ import MintModal from "./components/MintModal";
 
 const ProfileSection = () => {
     const config = useConfig()
-    const { Package, myNFTs, packages, uplines, downlines, registered, admin, allowance, directReferrals, NFTQueBalance, limitUtilized, NFTque, status, error } = useSelector((state) => state.contract);
-    const { address, isConnected, caipAddress, status: accountStatus } = useAppKitAccount();
+    const { Package, myNFTs, packages,  downlines, registered, admin, allowance, directReferrals, NFTQueBalance, limitUtilized, NFTque, status, error } = useSelector((state) => state.contract);
+    const { address } = useAppKitAccount();
     const [referrer, setReferrer] = useState()
     const dispatch = useDispatch()
 
@@ -45,7 +45,7 @@ const ProfileSection = () => {
                 functionName: "approve",
                 args: [mlmcontractaddress, packages[0].price],
                 onSuccess: () => handleRegister2(),
-                onError: (err) => alert("Transaction failed"),
+                onError: (err) => alert("Transaction failed",err),
                 contract: usdtContract
             });
         }
@@ -84,7 +84,7 @@ const ProfileSection = () => {
                 functionName: "approve",
                 args: [mlmcontractaddress, pkg.price],
                 onSuccess: () => handleUpdate2(pkg.id),
-                onError: (err) => alert("Transaction failed"),
+                onError: (err) => alert("Transaction failed",err),
                 contract: usdtContract
             });
         //}
@@ -175,7 +175,7 @@ const ProfileSection = () => {
                             {(() => {
 
                                 const nextPackage = packages[Number(Package.id) + 1]; // next package
-                                console.log("next",Number(Package.id),nextPackage.team, packages, Number(Package.id) + 1)
+           //                     console.log("next",Number(Package.id),nextPackage.team, packages, Number(Package.id) + 1)
                                 const canUpgrade = downlines.length >= nextPackage.team;
 
                                 return (Number(Package.id)<(packages.length-2)&& 
