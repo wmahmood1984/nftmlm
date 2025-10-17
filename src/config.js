@@ -326,43 +326,6 @@ export const mlmabi = [
 		"inputs": [
 			{
 				"indexed": false,
-				"internalType": "address",
-				"name": "add",
-				"type": "address"
-			},
-			{
-				"indexed": false,
-				"internalType": "uint256",
-				"name": "id",
-				"type": "uint256"
-			},
-			{
-				"indexed": false,
-				"internalType": "uint256",
-				"name": "amount",
-				"type": "uint256"
-			},
-			{
-				"indexed": false,
-				"internalType": "uint256",
-				"name": "premium",
-				"type": "uint256"
-			},
-			{
-				"indexed": false,
-				"internalType": "uint256",
-				"name": "time",
-				"type": "uint256"
-			}
-		],
-		"name": "Buy",
-		"type": "event"
-	},
-	{
-		"anonymous": false,
-		"inputs": [
-			{
-				"indexed": false,
 				"internalType": "uint64",
 				"name": "version",
 				"type": "uint64"
@@ -425,7 +388,7 @@ export const mlmabi = [
 		"inputs": [
 			{
 				"internalType": "address",
-				"name": "_referrer",
+				"name": "_ref",
 				"type": "address"
 			}
 		],
@@ -617,32 +580,12 @@ export const mlmabi = [
 	},
 	{
 		"inputs": [],
-		"name": "withdrawUSDT",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [],
 		"name": "_nextTokenId",
 		"outputs": [
 			{
 				"internalType": "uint256",
 				"name": "",
 				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "admin",
-		"outputs": [
-			{
-				"internalType": "address",
-				"name": "",
-				"type": "address"
 			}
 		],
 		"stateMutability": "view",
@@ -724,44 +667,6 @@ export const mlmabi = [
 				"internalType": "address",
 				"name": "",
 				"type": "address"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "_user",
-				"type": "address"
-			}
-		],
-		"name": "getDirectReferrals",
-		"outputs": [
-			{
-				"internalType": "address[]",
-				"name": "",
-				"type": "address[]"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "_user",
-				"type": "address"
-			}
-		],
-		"name": "getDownlines",
-		"outputs": [
-			{
-				"internalType": "address[]",
-				"name": "",
-				"type": "address[]"
 			}
 		],
 		"stateMutability": "view",
@@ -1020,6 +925,16 @@ export const mlmabi = [
 					{
 						"internalType": "address[]",
 						"name": "children",
+						"type": "address[]"
+					},
+					{
+						"internalType": "address[]",
+						"name": "indirect",
+						"type": "address[]"
+					},
+					{
+						"internalType": "address[]",
+						"name": "direct",
 						"type": "address[]"
 					}
 				],
@@ -1326,30 +1241,6 @@ export const mlmabi = [
 		"type": "function"
 	},
 	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "",
-				"type": "address"
-			},
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"name": "parentChild",
-		"outputs": [
-			{
-				"internalType": "address",
-				"name": "",
-				"type": "address"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
 		"inputs": [],
 		"name": "paymentToken",
 		"outputs": [
@@ -1595,7 +1486,7 @@ export const mlmabi = [
 	}
 ];
 
-export const mlmcontractaddress = "0x85b4b3801b5B2259C1806d84f1F656Dc2bf49611";
+export const mlmcontractaddress = "0x9cd71BfAC483f4b9D4734207BF294905818F01FE";
 
 export const mlmcontractaddressImplementation =
   "0xB9605fAe41F3D602e576a5Fa30dfCa810A35B76E";

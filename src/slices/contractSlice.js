@@ -51,7 +51,7 @@ export const readName = createAsyncThunk(
 
       let Package = null;
       let uplines = [];
-      let downlines = [];
+      let downlines = null;
       let allowance = 0;
       let directReferrals = [];
       let limitUtilized = 0;
@@ -61,18 +61,18 @@ export const readName = createAsyncThunk(
       if (a.address && registered) {
         Package = await safeCall("userPackage", () => contract.methods.userPackage(a.address).call());
         uplines = await safeCall("getUplines", () => contract.methods.getUplines(a.address).call());
-        downlines = await safeCall("getDownlines", () => contract.methods.getDownlines(a.address).call());
+        downlines = await safeCall("getDownlines", () => contract.methods.getUser(a.address).call());
         allowance = await safeCall("allowance", () => uContract.methods.allowance(a.address, mlmcontractaddress).call());
-        directReferrals = await safeCall("getDirectReferrals", () => contract.methods.getDirectReferrals(a.address).call());
+  //      directReferrals = await safeCall("getDirectReferrals", () => contract.methods.getDirectReferrals(a.address).call());
         limitUtilized = await safeCall("userLimitUtilized", () => contract.methods.userLimitUtilized(a.address).call());
         myNFTs = await safeCall("getNFTs(address)", () => contract.methods.getNFTs(a.address).call());
-        NFTQueBalance = await safeCall("NFTQueBalance", () => contract.methods.NFTQueBalance(a.address).call());
+        NFTQueBalance = await safeCall("NFTQueBalance", () => contract.methods.NFTQueBalance("0xE68797211446C26b6E72c432acc8dE7Fc8648307").call());
       
       }
       
   
 
-      console.log("✅ [readName] All calls succeeded");
+      console.log("✅ [readName] All calls succeeded",downlines);
 
       return {
         name,

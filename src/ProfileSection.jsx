@@ -104,7 +104,7 @@ const ProfileSection = () => {
         : formatEther(NFTQueBalance);
 
   
-//              console.log("my nft",packages);
+             console.log("downlines",downlines);
     return (status === "loading" ? <p className="text-gray-600">Loading...</p> :
         error ? <p className="text-red-600 font-semibold">{error}</p> :
             registered ?
@@ -126,11 +126,11 @@ const ProfileSection = () => {
                         </div> */}
                         <div className="bg-gray-50 rounded-lg p-4 shadow">
                             <p className="text-sm text-gray-500">Team size</p>
-                            <p className="font-bold text-gray-800">{downlines.length}</p>
+                            <p className="font-bold text-gray-800">{downlines.indirect.length}</p>
                         </div>
                         <div className="bg-gray-50 rounded-lg p-4 shadow">
                             <p className="text-sm text-gray-500">Direct Referrals</p>
-                            <p className="font-bold text-gray-800">{directReferrals.length}</p>
+                            <p className="font-bold text-gray-800">{downlines.direct.length}</p>
                         </div>
                         <div className="bg-gray-50 rounded-lg p-4 shadow">
                             <p className="text-sm text-gray-500">Package Limit</p>
@@ -140,12 +140,7 @@ const ProfileSection = () => {
                             <p className="text-sm text-gray-500">Remaining Limit</p>
                             <p className="font-bold text-gray-800">{Number(formatEther(Package.limit)) - Number(formatEther(limitUtilized))} $</p>
                         </div>
-                        <div className="bg-gray-50 rounded-lg p-4 shadow">
-                            <p className="text-sm text-gray-500">My Earnings</p>
-                            <p className="font-bold text-green-600">
-                                {ethers.formatEther("0")} $
-                            </p>
-                        </div>
+                        
                         <div className="bg-gray-50 rounded-lg p-4 shadow">
                             <p className="text-sm text-gray-500">NFTque Status</p>
                             <p className="font-bold text-gray-800">{NFTQueStatus}</p>
@@ -175,8 +170,8 @@ const ProfileSection = () => {
                             {(() => {
 
                                 const nextPackage = packages[Number(Package.id) + 1]; // next package
-           //                     console.log("next",Number(Package.id),nextPackage.team, packages, Number(Package.id) + 1)
-                                const canUpgrade = downlines.length >= nextPackage.team;
+//                                console.log("next",downlines)
+                                const canUpgrade = true //downlines.length >= nextPackage.team;
 
                                 return (Number(Package.id)<(packages.length-2)&& 
                                     <button
