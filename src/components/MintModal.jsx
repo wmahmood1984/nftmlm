@@ -1,16 +1,16 @@
 import { useState } from "react";
-import pinataSDK from "@pinata/sdk";
+// import pinataSDK from "@pinata/sdk";
 import { useDispatch, useSelector } from "react-redux";
 import { executeContract } from "../utils/contractExecutor";
 import { useConfig } from "wagmi";
 import { readName } from "../slices/contractSlice";
 import { useAppKitAccount } from "@reown/appkit/react";
 import { mlmcontractaddress, usdtContract } from "../config";
-import { formatEther, parseEther } from "ethers";
+import {  parseEther } from "ethers";
 
 export default function MintModal({ isOpen, onClose }) {
-      const { nftused,allowance, status, error } = useSelector((state) => state.contract);
-          const { address, isConnected, caipAddress, status: accountStatus } = useAppKitAccount();
+      const { nftused } = useSelector((state) => state.contract);
+          const { address } = useAppKitAccount();
     const [name, setName] = useState("");
   const [file, setFile] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -18,10 +18,10 @@ export default function MintModal({ isOpen, onClose }) {
    const dispatch = useDispatch()
   // ⚠️ SECURITY: Do NOT expose Pinata keys in frontend production apps!
   // Instead, build a small Express backend that signs requests.
-  const pinata = new pinataSDK({
-    pinataApiKey: import.meta.env.VITE_PINATA_API_KEY,
-    pinataSecretApiKey: import.meta.env.VITE_PINATA_SECRET,
-  });
+  // const pinata = new pinataSDK({
+  //   pinataApiKey: import.meta.env.VITE_PINATA_API_KEY,
+  //   pinataSecretApiKey: import.meta.env.VITE_PINATA_SECRET,
+  // });
 
 
     const handleUpdate = async (uri,add) => {
@@ -140,7 +140,7 @@ const handleMint = async () => {
                 functionName: "approve",
                 args: [mlmcontractaddress, parseEther(value.toString())],
                 onSuccess: () => handleMint(),
-                onError: (err) => alert("Transaction failed"),
+                onError: (err) => alert("Transaction failed",err),
                 contract: usdtContract
             });
         // }
@@ -149,7 +149,7 @@ const handleMint = async () => {
     };
 
 
-// console.log("first",import.meta.env.VITE_PINATA_JWT,)
+
 
   if (!isOpen) return null;
 

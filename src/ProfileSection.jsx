@@ -12,7 +12,7 @@ import MintModal from "./components/MintModal";
 
 const ProfileSection = () => {
     const config = useConfig()
-    const { Package, myNFTs, packages,  downlines, registered, admin, allowance, directReferrals, NFTQueBalance, limitUtilized, NFTque, status, error } = useSelector((state) => state.contract);
+    const { Package, myNFTs, packages,  downlines, registered, admin, allowance,  NFTQueBalance, limitUtilized, NFTque, status, error } = useSelector((state) => state.contract);
     const { address } = useAppKitAccount();
     const [referrer, setReferrer] = useState()
     const dispatch = useDispatch()
