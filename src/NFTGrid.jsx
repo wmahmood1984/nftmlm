@@ -73,7 +73,7 @@ export const Image = ({ nft, index }) => {
 
     };
 
-console.log("first",nfts)
+//console.log("first",nfts)
 
     return (image && name &&
 

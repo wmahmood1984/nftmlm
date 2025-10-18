@@ -66,7 +66,7 @@ export const readName = createAsyncThunk(
   //      directReferrals = await safeCall("getDirectReferrals", () => contract.methods.getDirectReferrals(a.address).call());
         limitUtilized = await safeCall("userLimitUtilized", () => contract.methods.userLimitUtilized(a.address).call());
         myNFTs = await safeCall("getNFTs(address)", () => contract.methods.getNFTs(a.address).call());
-        NFTQueBalance = await safeCall("NFTQueBalance", () => contract.methods.NFTQueBalance("0xE68797211446C26b6E72c432acc8dE7Fc8648307").call());
+        NFTQueBalance = await safeCall("NFTQueBalance", () => contract.methods.NFTQueBalance(a.address).call());
       
       }
       
