@@ -182,18 +182,16 @@ contract MyNFT is
 
         userRegistered[msg.sender] = true;
         
-        sendConditional(_referrer,amount/2,1);
+        sendConditional(_referrer,amount/2);
         
         
         userTradingTime[msg.sender] = block.timestamp;
         userLevelIncomeBlockTime[msg.sender] = block.timestamp;
     }
 
-    function sendConditional(address up,uint amount,uint8 _type) internal {
-         bool eligible = _type==1? (block.timestamp-userPackage[up].purchaseTime)<=60*60*24*30 :
-            userPackage[up].id > 0;
+    function sendConditional(address up,uint amount) internal {
         if (
-            eligible &&
+            userPackage[up].id > 0 &&
             block.timestamp - userLevelIncomeBlockTime[up] >= (timelimit)
         ) {
             if (block.timestamp - userTradingTime[up] <= (timelimit)) {
@@ -267,7 +265,7 @@ contract MyNFT is
         address up = users[msg.sender].referrer;
        
 
-        sendConditional(up,(amount * 20) / 100,2);
+        sendConditional(up,(amount * 20) / 100);
 
         address[] memory uplines = getUplines(msg.sender);
 
@@ -293,15 +291,9 @@ contract MyNFT is
         require(index < nfts.length, "NFT does not exist");
 
         NFT storage _nft = nfts[index];
-        Package storage _package = userPackage[msg.sender];
-        require(
-            (_package.limit - userLimitUtilized[msg.sender]) >=
-                (_nft.price + _nft.premium),
-            "7"
-        );
-
-        (uint forDis) = goDistribute(_nft, _nft._owner);
         userLimitUtilized[msg.sender] += (_nft.price + _nft.price*7/100);
+        (uint forDis) = goDistribute(_nft, _nft._owner);
+
         // transfer token (ERC721) — use tokenId `id`
         _transfer(_nft._owner, msg.sender, id);
 
@@ -337,9 +329,13 @@ contract MyNFT is
     ) internal returns (uint) {
         uint amount = (_nft.price * percentageAtBuy) / 1000;
 
-
+        Package storage _package = userPackage[msg.sender];
         // ensure user has a package and enough limit
-
+        require(
+            (_package.limit - userLimitUtilized[msg.sender]) >=
+                (_nft.price + _nft.premium),
+            "7"
+        );
 
         // allowance check
         require(
@@ -415,7 +411,7 @@ contract MyNFT is
         //         userLevelIncomeBlockTime[up] = block.timestamp;
         //     }
         // }
-        sendConditional(up,(_amount * 10) / 100,2);
+        sendConditional(up,(_amount * 10) / 100);
 
         address[] memory _uplines = getUplines(msg.sender);
 
@@ -604,9 +600,9 @@ contract MyNFT is
         return nftused;
     }
 
-    function withdrawUSDT() public onlyOwner {
-        paymentToken.transfer(owner(), paymentToken.balanceOf(address(this)));
-    }
+    // function withdrawUSDT() public onlyOwner {
+    //     paymentToken.transfer(owner(), paymentToken.balanceOf(address(this)));
+    // }
 
     /// ✅ Required by UUPS — only owner can upgrade
     function _authorizeUpgrade(
